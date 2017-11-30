@@ -9,21 +9,21 @@ branches:
 matrix:
   include:
     - php: 7.2
-      env: 'SCENARIO=symfony4 HIGHEST_LOWEST="update" STABILITY="dev"'
+      env: 'SCENARIO=dev4 HIGHEST_LOWEST="update"'
     - php: 7.2
       env: 'SCENARIO=symfony4 HIGHEST_LOWEST="update"'
     - php: 7.1
       env: 'SCENARIO=symfony4'
     - php: 7.0.11
-      env: 'SCENARIO=symfony3 HIGHEST_LOWEST="update" STABILITY="RC"'
+      env: 'SCENARIO=symfony3 HIGHEST_LOWEST="update"'
     - php: 7.0.11
     - php: 5.6
     - php: 5.5
-      env: 'SCENARIO=symfony2 HIGHEST_LOWEST="update --prefer-lowest"'
+      env: 'SCENARIO=symfony2 HIGHEST_LOWEST="update'
 
 allow_failures:
     - php: 7.2
-      env: 'SCENARIO=symfony4 HIGHEST_LOWEST="update" STABILITY="dev"'
+      env: 'SCENARIO=dev4 HIGHEST_LOWEST="update"'
 
 sudo: false
 

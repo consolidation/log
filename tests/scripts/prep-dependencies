@@ -2,19 +2,18 @@
 
 set -ex
 
-SCENARIOS="symfony2 symfony3 symfony4"
+SCENARIOS="symfony2 symfony3 symfony4 dev4"
 AUTOLOAD_DIRECTORIES='src tests'
 
-stability_symfony2='stable'
-stability_symfony3='stable'
-stability_symfony4='RC'
+stability_dev4='dev'
 
 platform_php_symfony2='5.5'
 platform_php_symfony3='5.6'
 
-constraint_symfony2='symfony/console:^2.8'
-constraint_symfony3='symfony/console:^3'
-constraint_symfony4='symfony/console:^4'
+requirement_symfony2='symfony/console:^2.8'
+requirement_symfony3='symfony/console:^3'
+requirement_symfony4='symfony/console:^4'
+requirement_dev4='symfony/console:^4'
 
 for SCENARIO in ${SCENARIOS} ; do
 
@@ -22,7 +21,7 @@ for SCENARIO in ${SCENARIOS} ; do
 
   # Define indirect variable names
   stability_variable="stability_${SCENARIO}"
-  constraint_variable="constraint_${SCENARIO}"
+  requirement_variable="requirement_${SCENARIO}"
   platform_php_variable="platform_php_${SCENARIO}"
 
   echo "### Create $dir/composer.json for ${SCENARIO} scenario"
@@ -39,7 +38,7 @@ for SCENARIO in ${SCENARIOS} ; do
   composer -n --working-dir=$dir config minimum-stability "${!stability_variable-stable}"
 
   # Add a constraint to limit the Symfony version
-  composer -n --working-dir=$dir require --dev --no-update "${!constraint_variable}"
+  composer -n --working-dir=$dir require --dev --no-update "${!requirement_variable}"
 
   # Create the composer.lock file. Ignore the vendor directory created.
   composer -n --working-dir=$dir update --no-scripts

@@ -30,12 +30,17 @@
     },
     "minimum-stability": "stable",
     "scripts": {
-        "cs": "phpcs -n src tests",
-        "cbf": "phpcbf -n src tests",
-        "test": "phpunit",
+        "cs": "phpcs -n --standard=PSR2 src",
+        "cbf": "phpcbf -n --standard=PSR2 src",
+        "unit": "phpunit",
         "lint": [
             "find src -name '*.php' -print0 | xargs -0 -n1 php -l",
             "find tests/src -name '*.php' -print0 | xargs -0 -n1 php -l"
+        ],
+        "test": [
+            "@lint",
+            "@unit",
+            "@cs"
         ],
         "scenario": "tests/scripts/install-scenario",
         "post-update-cmd": "tests/scripts/prep-dependencies"
