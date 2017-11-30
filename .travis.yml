@@ -33,7 +33,7 @@ cache:
     - $HOME/.composer/cache
 
 install:
-  - 'composer scenario ${SCENARIO} ${HIGHEST_LOWEST}'
+  - 'composer scenario "${SCENARIO}" "${HIGHEST_LOWEST}"'
 
 script:
   - vendor/bin/phpcs --standard=PSR2 -n src
