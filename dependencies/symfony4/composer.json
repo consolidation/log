@@ -35,10 +35,10 @@
         "test": "phpunit",
         "lint": [
             "find src -name '*.php' -print0 | xargs -0 -n1 php -l",
-            "find tests -name '*.php' -print0 | xargs -0 -n1 php -l"
+            "find tests/src -name '*.php' -print0 | xargs -0 -n1 php -l"
         ],
-        "symfony": "tests/scripts/switch-symfony",
-        "post-update-cmd": "tests/scripts/prep-multiple-symfony-versions"
+        "scenario": "tests/scripts/install-scenario",
+        "post-update-cmd": "tests/scripts/prep-dependencies"
     },
     "extra": {
         "branch-alias": {

@@ -1,0 +1,57 @@
+#!/bin/bash
+
+set -ex
+
+SCENARIOS="symfony2 symfony3 symfony4"
+AUTOLOAD_DIRECTORIES='src tests'
+
+stability_symfony2='stable'
+stability_symfony3='stable'
+stability_symfony4='RC'
+
+platform_php_symfony2='5.5'
+platform_php_symfony3='5.6'
+
+constraint_symfony2='symfony/console:^2.8'
+constraint_symfony3='symfony/console:^3'
+constraint_symfony4='symfony/console:^4'
+
+for SCENARIO in ${SCENARIOS} ; do
+
+  dir=dependencies/${SCENARIO}
+
+  # Define indirect variable names
+  stability_variable="stability_${SCENARIO}"
+  constraint_variable="constraint_${SCENARIO}"
+  platform_php_variable="platform_php_${SCENARIO}"
+
+  echo "### Create $dir/composer.json for ${SCENARIO} scenario"
+  mkdir -p $dir
+  cp composer.json $dir
+
+  # Then set our own platform php version if applicable (otherwise unset it)
+  composer -n --working-dir=$dir config platform.php "${!platform_php_variable---unset}"
+
+  # Temporarily set our vendor directory to 'vendor'
+  composer -n --working-dir=$dir config vendor-dir vendor
+
+  # Set an appropriate minimum stability for this version of Symfony
+  composer -n --working-dir=$dir config minimum-stability "${!stability_variable-stable}"
+
+  # Add a constraint to limit the Symfony version
+  composer -n --working-dir=$dir require --dev --no-update "${!constraint_variable}"
+
+  # Create the composer.lock file. Ignore the vendor directory created.
+  composer -n --working-dir=$dir update --no-scripts
+
+  # Set the vendor directory to its final desired location.
+  composer -n --working-dir=$dir config vendor-dir '../../vendor'
+
+  # The 'autoload' section specifies directory paths that are relative
+  # to the composer.json file. We will drop in some symlinks so that
+  # these paths will resolve as if the composer.json were in the root.
+  for target in $AUTOLOAD_DIRECTORIES ; do
+    ln -s -f ../../$target $dir
+  done
+
+done

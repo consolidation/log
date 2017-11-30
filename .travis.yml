@@ -8,18 +8,22 @@ branches:
 
 matrix:
   include:
+    - php: 7.2
+      env: 'SCENARIO=symfony4 HIGHEST_LOWEST="update" STABILITY="dev"'
+    - php: 7.2
+      env: 'SCENARIO=symfony4 HIGHEST_LOWEST="update"'
     - php: 7.1
-      env: 'SYMFONY=4 HIGHEST_LOWEST="update" STABILITY="RC"'
-    - php: 7.1
-      env: 'SYMFONY=4'
+      env: 'SCENARIO=symfony4'
     - php: 7.0.11
-      env: 'SYMFONY=3 HIGHEST_LOWEST="update" STABILITY="RC"'
+      env: 'SCENARIO=symfony3 HIGHEST_LOWEST="update" STABILITY="RC"'
     - php: 7.0.11
-      env: 'SYMFONY=3'
     - php: 5.6
-      env: 'SYMFONY=3'
     - php: 5.5
-      env: 'SYMFONY=2 HIGHEST_LOWEST="update --prefer-lowest"'
+      env: 'SCENARIO=symfony2 HIGHEST_LOWEST="update --prefer-lowest"'
+
+allow_failures:
+    - php: 7.2
+      env: 'SCENARIO=symfony4 HIGHEST_LOWEST="update" STABILITY="dev"'
 
 sudo: false
 
@@ -29,14 +33,7 @@ cache:
     - $HOME/.composer/cache
 
 install:
-  # Run 'composer install' or 'composer update' as appropriate
-  - 'composer -n --working-dir=tests/symfony${SYMFONY} ${HIGHEST_LOWEST-install} --prefer-dist --no-scripts'
-  # For diagnostic purposes
-  #   - Explain which components are limiting the version of symfony/console
-  #   - Print an alphabetical list of installed packages with version strings
-  - 'composer why symfony/console'
-  - 'composer licenses'
-  - 'find . -name "*"'
+  - 'composer scenario ${SCENARIO} ${HIGHEST_LOWEST}'
 
 script:
   - vendor/bin/phpcs --standard=PSR2 -n src
