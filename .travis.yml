@@ -36,6 +36,7 @@ install:
   #   - Print an alphabetical list of installed packages with version strings
   - 'composer why symfony/console'
   - 'composer licenses'
+  - 'find . -name "*"'
 
 script:
   - vendor/bin/phpcs --standard=PSR2 -n src
