@@ -19,15 +19,15 @@
         }
     },
     "require": {
-        "php": ">=5.5.0",
-        "psr/log": "~1.0",
+        "php": ">=5.4.5",
+        "psr/log": "^1.0",
         "symfony/console": "^2.8|^3|^4"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.*",
+        "phpunit/phpunit": "^6",
         "g1a/composer-test-scenarios": "^3",
         "php-coveralls/php-coveralls": "^1",
-        "squizlabs/php_codesniffer": "2.*"
+        "squizlabs/php_codesniffer": "^2"
     },
     "minimum-stability": "stable",
     "scripts": {
@@ -68,7 +68,23 @@
                 ],
                 "config": {
                     "platform": {
-                        "php": "5.5.38"
+                        "php": "5.4.8"
+                    }
+                },
+                "scenario-options": {
+                    "create-lockfile": "false"
+                }
+            },
+            "phpunit4": {
+                "require-dev": {
+                    "phpunit/phpunit": "^4.8.36"
+                },
+                "remove": [
+                    "php-coveralls/php-coveralls"
+                ],
+                "config": {
+                    "platform": {
+                        "php": "5.4.8"
                     }
                 }
             }
@@ -78,8 +94,10 @@
         }
     },
     "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
         "platform": {
-            "php": "5.6"
+            "php": "7.0.8"
         }
     }
 }
