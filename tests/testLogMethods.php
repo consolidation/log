@@ -3,8 +3,9 @@ namespace Consolidation\Log;
 
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use PHPUnit\Framework\TestCase;
 
-class LogMethodTests extends \PHPUnit_Framework_TestCase
+class LogMethodTests extends TestCase
 {
   protected $output;
   protected $logger;
