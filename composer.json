@@ -70,9 +70,6 @@
                     "platform": {
                         "php": "5.4.8"
                     }
-                },
-                "scenario-options": {
-                    "create-lockfile": "false"
                 }
             },
             "phpunit4": {
