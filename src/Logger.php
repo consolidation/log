@@ -144,7 +144,7 @@ class Logger extends AbstractLogger implements StylableLoggerInterface, Settable
     /**
      * {@inheritdoc}
      */
-    public function log($level, $message, array $context = array())
+    public function log($level, string|\Stringable $message, array $context = []): void
     {
         // We use the '_level' context variable to allow log messages
         // to be logged at one level (e.g. NOTICE) and formatted at another
