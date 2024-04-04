@@ -1,5 +1,9 @@
 # Change Log
 
+### 3.1.0: 2024-04-04:
+
+- Symfony 7 support
+
 ### 3.0.0: 2022-04-05:
 
 - psr/log ^3
