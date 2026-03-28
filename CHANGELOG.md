@@ -1,5 +1,10 @@
 # Change Log
 
+### 3.1.2: 2026-03-28:
+
+- Allow Symfony 8 (#39)
+- Add Symfony major version matrix to CI (#40)
+
 ### 3.1.1: 2025-11-14:
 
 - PHP 8.5 support
