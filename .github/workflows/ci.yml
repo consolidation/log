@@ -123,12 +123,12 @@ jobs:
             php-ini-values: assert.exception=1, zend.assertions=1, opcache.enable=1, opcache.enable_cli=1, opcache.optimization_level=-1, opcache.jit_buffer_size=4096M, opcache.jit=1205
 
           - os: ubuntu-latest
-            php-version: "8.2"
+            php-version: "8.0"
             dependencies: highest
             symfony: "5"
 
           - os: ubuntu-latest
-            php-version: "8.2"
+            php-version: "8.1"
             dependencies: highest
             symfony: "6"
 
@@ -138,7 +138,7 @@ jobs:
             symfony: "7"
 
           - os: ubuntu-latest
-            php-version: "8.2"
+            php-version: "8.5"
             dependencies: highest
             symfony: "8"
 
