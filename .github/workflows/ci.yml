@@ -192,7 +192,7 @@ jobs:
 
       - name: Require Symfony ${{ matrix.symfony }}
         if: matrix.symfony != ''
-        run: composer require --no-interaction --no-progress symfony/console:^${{ matrix.symfony }}
+        run: composer require --no-interaction --no-progress --with-all-dependencies symfony/console:^${{ matrix.symfony }}
 
       - name: Run tests with phpunit
         run: composer unit
